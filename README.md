@@ -9,6 +9,10 @@ Covid data worldwide-> https://github.com/CSSEGISandData/COVID-19
 
 Covid data specific to India -> https://github.com/covid19india/api
 
+URL to display data on browser->
+localhost:8080/home
+localhost:8080/india
+
 I have used to types of method to fetch the data,
 -For Worldwide data, the data is received in the CSV format.
 -For Indian data, the data received in Json format.
