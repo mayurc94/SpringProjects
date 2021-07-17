@@ -10,8 +10,7 @@ Covid data worldwide-> https://github.com/CSSEGISandData/COVID-19
 Covid data specific to India -> https://github.com/covid19india/api
 
 URL to display data on browser->
-localhost:8080/home
-localhost:8080/india
+-localhost:8080/home, localhost:8080/india
 
 I have used to types of method to fetch the data,
 -For Worldwide data, the data is received in the CSV format.
@@ -22,5 +21,5 @@ In this project i have also tried to fetch data regarding Vaccination status.Rig
 
 For vaccination data there is no view. You can use an API client like Postman/Insomnia to fetch the data.
 
-Please feel free add more to it.
+Please feel free to add more to it.
 
