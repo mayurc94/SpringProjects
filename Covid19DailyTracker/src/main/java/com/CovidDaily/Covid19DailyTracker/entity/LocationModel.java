@@ -1,6 +1,6 @@
 package com.CovidDaily.Covid19DailyTracker.entity;
 
-public class LocationStats {
+public class LocationModel {
 
 	private String state;
 	private String country;

@@ -22,11 +22,12 @@ import org.apache.commons.csv.CSVRecord;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriBuilder;
 
 import com.CovidDaily.Covid19DailyTracker.entity.IndiaModel;
-import com.CovidDaily.Covid19DailyTracker.entity.LocationStats;
+import com.CovidDaily.Covid19DailyTracker.entity.LocationModel;
 import com.CovidDaily.Covid19DailyTracker.entity.StateEntity;
 import com.CovidDaily.Covid19DailyTracker.helper.IndiaModelMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,14 +37,14 @@ import static com.CovidDaily.Covid19DailyTracker.helper.Constants.*;
 @Service
 public class CovidDataService {
 
-	private List<LocationStats> covidStats = new ArrayList<>();
+	private List<LocationModel> covidStats = new ArrayList<>();
 
 	private List<IndiaModel> indianList = new ArrayList<>();
 
 	@Autowired
 	private IndiaModelMapper modelMapper;
 
-	public List<LocationStats> getCovidStats() {
+	public List<LocationModel> getCovidStats() {
 		return covidStats;
 	}
 
@@ -51,17 +52,17 @@ public class CovidDataService {
 		return indianList;
 	}
 
-	// @PostConstruct
-//	@Scheduled(cron = "* * * * * *")
-	public void fetchVirusData() throws IOException, InterruptedException {
-		List<LocationStats> newStats = new ArrayList<>();
+	//@PostConstruct
+	@Scheduled(cron = "* * * * * *")
+	public List<LocationModel> fetchVirusData() throws IOException, InterruptedException {
+		List<LocationModel> locationList = new ArrayList<>();
 
 		HttpResponse<String> httpResponse = commonHttpClientCall(COVID_FETCH_URL);
 
 		StringReader csvReader = new StringReader(httpResponse.body());
 		Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvReader);
 		for (CSVRecord record : records) {
-			LocationStats stats = new LocationStats();
+			LocationModel stats = new LocationModel();
 			stats.setState(record.get("Province_State"));
 			stats.setCountry(record.get("Country_Region"));
 			stats.setConfirmed(Integer.parseInt(record.get("Confirmed")));
@@ -70,10 +71,10 @@ public class CovidDataService {
 			stats.setRecovered(record.get("Recovered"));
 
 //			System.out.println(stats);
-			newStats.add(stats);
+			locationList.add(stats);
 		}
 
-		this.covidStats = newStats;
+		return this.covidStats = locationList;
 
 	}
 
