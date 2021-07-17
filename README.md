@@ -21,5 +21,8 @@ In this project i have also tried to fetch data regarding Vaccination status.Rig
 
 For vaccination data there is no view. You can use an API client like Postman/Insomnia to fetch the data.
 
+Vaccination data source-
+https://apisetu.gov.in/public/api/cowin
+
 Please feel free to add more to it.
 
