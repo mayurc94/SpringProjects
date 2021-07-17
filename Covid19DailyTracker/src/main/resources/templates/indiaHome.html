@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+
+<head>
+<title>Covid-19 Tracker Application</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+
+</head>
+
+<body bac>
+	<div class="container">
+		<h1>Covid-19 Tracker India</h1>
+		<h4>This application lists the current number of cases reported in India</h4>
+
+		<div class="jumbotron jumbotron-fluid">
+			<h1 class="display-4" th:text="${totalReportedCases}"></h1>
+			<p class="lead">Total confirmed cases in India</p>
+		</div>
+
+
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Date</th>
+					<th scope="col">State</th>
+					<th scope="col">Confirmed</th>
+					<th scope="col">Recovered</th>
+					<th scope="col">Deaths</th>
+					<th scope="col">Tested</th>
+				</tr>
+			</thead>
+			<tr th:each="indianList : ${indianList}">
+				<td th:text="${indianList.date}"></td>
+				<td th:text="${indianList.state}"></td>
+				<td th:text="${indianList.confirmed}"></td>
+				<td th:text="${indianList.recovered}"></td>
+				<td th:text="${indianList.deceased}"></td>
+				<td th:text="${indianList.tested}"></td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+
+</html>
